@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1>Report</h1>
+    <table>
+      <% @files.each do |file| %>
+        <tr>
+          <td style="line-height: 1em; display: inline-block; border: 2px solid red; background-color: red; width: <%= file[:diff_score] * 5 %>;">&nbsp;</td>
+          <td>
+            <a href="<%= file[:path] %>">
+              <%= file[:basename] %>
+            </a>
+          </td>
+        </tr>
+      <% end %>
+    </ul>
+  </body>
+</html>

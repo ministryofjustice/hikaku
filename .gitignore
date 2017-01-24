@@ -1,0 +1,7 @@
+report.html
+diffs/*.html
+normalised_html/*/*.html
+.byebug_history
+.ctags_exclude
+tags
+.env

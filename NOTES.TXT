@@ -1,0 +1,34 @@
+approach
+- extract <body>
+- discard <script>
+- discard comments
+- discard blank lines
+- remove attribute IDs
+- discard all class attributes
+- remove data attributes
+- replace all hrefs with dummy value
+- discard specific elements
+  header
+  footer
+  <div id="global-cookie-message">
+  <div id="global-header-bar"></div>
+  <div class="phase-banner-alpha">
+
+TODO
+- fetch rails app. pages via a continuous path through the app (otherwise, stuff breaks)
+- remove whitespace inside elements, e.g. <p>\n  somthing\n</p>
+- put every tag on a separate line?
+- try https://tools.ietf.org/tools/rfcdiff/rfcdiff
+
+Process
+- screen-scrape a path through the target website
+
+- for each page
+    - save a normalised version of the html as (filename from docpath)
+
+- repeat for the comparison site
+
+- iterate through a list of mappings of target/comparison docpath-filenames
+  - generate diff report
+  - add entry, with score, to a list of differences
+
