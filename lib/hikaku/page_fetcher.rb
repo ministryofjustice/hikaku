@@ -14,6 +14,14 @@ module Hikaku
 
     private
 
+    def save_normalised
+      page = @agent.page
+      path = page.uri.path
+      puts "#{self.class} #{path}"
+      content = normalise page.body
+      write_normalised(docpath: path, content: content)
+    end
+
     # Takes a nokogiri doc and throws away a whole bunch of stuff
     # to make it easier to compare the structure and content of html
     # pages
@@ -36,6 +44,9 @@ module Hikaku
       remove_data_attributes body
 
       body.to_s
+        .gsub(/>\s+/, '>')
+        .gsub(/\s+</, '<')
+        .gsub('><', ">\n<")
     end
 
     def write_normalised(docpath:, content:)
