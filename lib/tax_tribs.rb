@@ -30,8 +30,14 @@ class TaxTribs < Hikaku::AppFetcher
       'Phone number'                    => '12345',
     )
 
+    # Grounds for appeal
     fill_in_form(
       'Enter reasons below or attach as a document' => "I don't like paying tax"
+    )
+
+    # Desired outcome
+    fill_in_form(
+      'Outcome' => "I don't want to pay the tax"
     )
 
     upload_documents './data/facepalm.png'
