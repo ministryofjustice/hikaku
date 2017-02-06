@@ -10,24 +10,38 @@ class TaxTribs < Hikaku::AppFetcher
     click_link 'Appeal against a tax decision'
     click_link 'Find out the cost of your appeal'
     click_link 'Continue'
-    choose_radio_button 'Yes'
+
+    # Did you appeal
+    choose_radio_button 'No'
+    choose_radio_button 'Income Tax'
+
+    # Go back and say we did appeal
+    click_link 'Appeal to the tax tribunal', save: false
+    click_link 'Appeal against a tax decision', save: false
+    click_link 'Find out the cost of your appeal', save: false
+    click_link 'Continue', save: false
+    choose_radio_button 'Yes', save: false
+
+    choose_radio_button 'Other type of tax, appeal or application'
+    click_link 'Back', save: false
     choose_radio_button 'Income Tax'
     choose_radio_button 'Penalty or surcharge'
     choose_radio_button '£100 or less'
     click_link 'Continue', save: false  # skip over the repeated task list
-    click_link 'Start'
+    click_link 'Check you meet the tribunal deadline'
     click_link 'Continue'
     choose_radio_button 'Yes, I am in time', save: false # skip over the repeated task list
-    click_link 'Start'
+    click_link 'Enter appeal details and pay fee'
     click_link 'Continue'
     choose_radio_button 'Individual'
 
     fill_in_form(
-      'Name (first name and last name)' => 'Some Guy',
-      'Address'                         => '123 Some Street',
-      'Postcode'                        => 'W1A 4WW',
-      'Email address'                   => 'some@guy.com',
-      'Phone number'                    => '12345',
+      'First name'    => 'Some',
+      'Last name'     => 'Guy',
+      'Address'       => '123 Some Street',
+      'Postcode'      => 'W1A 4WW',
+      'Email address' => 'some@guy.com',
+      'Phone number'  => '12345',
     )
 
     # Grounds for appeal
