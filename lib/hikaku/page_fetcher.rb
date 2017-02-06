@@ -40,6 +40,9 @@ module Hikaku
       body.xpath('//@class').remove
       body.xpath('//@id').remove
       body.xpath('//a').xpath('//@href').remove
+      body.xpath('//label').xpath('//@for').remove
+      body.xpath('//input').xpath('//@name').remove
+      body.xpath('//input').xpath('//@value').remove
 
       remove_data_attributes body
 
