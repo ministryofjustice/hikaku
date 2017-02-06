@@ -44,7 +44,8 @@ module Hikaku
       body.xpath('//input').xpath('//@name').remove
       body.xpath('//input').xpath('//@value').remove
 
-      remove_data_attributes body
+      remove_attributes(body, 'data')
+      remove_attributes(body, 'aria')
 
       body.to_s
         .gsub(/>\s+/, '>')
@@ -59,11 +60,12 @@ module Hikaku
       file
     end
 
-    def remove_data_attributes(nokogiri_doc)
+    def remove_attributes(nokogiri_doc, prefix)
       nokogiri_doc.xpath('//*').map do |element|
-        elements = element.attributes.find_all {|name, attr| name =~ /\Adata/}
-        elements[0][1].remove if elements.any?
+        attrs = element.attributes.find_all {|name, attr| name =~ /\A#{prefix}/}
+        attrs.map { |a| a[1].remove } if attrs.any?
       end
     end
+
   end
 end
