@@ -8,7 +8,6 @@ class TaxTribs < Hikaku::AppFetcher
 
     fetch ''
     click_link 'Appeal against a tax decision'
-    click_link 'Find out the cost of your appeal'
     click_link 'Continue'
 
     # Did you appeal
@@ -18,7 +17,6 @@ class TaxTribs < Hikaku::AppFetcher
     # Go back and say we did appeal
     click_link 'Appeal to the tax tribunal', save: false
     click_link 'Appeal against a tax decision', save: false
-    click_link 'Find out the cost of your appeal', save: false
     click_link 'Continue', save: false
     choose_radio_button 'Yes', save: false
 
@@ -27,22 +25,20 @@ class TaxTribs < Hikaku::AppFetcher
     choose_radio_button 'Income Tax'
     choose_radio_button 'Penalty or surcharge'
     choose_radio_button '£100 or less'
-    click_link 'Continue', save: false  # skip over the repeated task list
-    click_link 'Check you meet the tribunal deadline'
-    click_link 'Continue'
-    choose_radio_button 'Yes, I am in time', save: false # skip over the repeated task list
-    click_link 'Enter appeal details and pay fee'
-    click_link 'Continue'
+    choose_radio_button 'Yes, I am in time'
+    choose_radio_button 'Yes'  # I am the taxpayer
     choose_radio_button 'Individual'
 
     fill_in_form(
-      'First name'    => 'Some',
-      'Last name'     => 'Guy',
-      'Address'       => '123 Some Street',
-      'Postcode'      => 'W1A 4WW',
-      'Email address' => 'some@guy.com',
-      'Phone number'  => '12345',
+      'First name' => 'Some',
+      'Last name' => 'Guy',
+      'Address' => '123 Some Street',
+      'Postcode' => 'W1A 4WW',
+      'Email address (to receive confirmation by email)' => 'some@guy.com',
+      'Contact phone number (optional)' => '12345',
     )
+
+    choose_radio_button 'No'  # I don't have someone to represent me
 
     # Grounds for appeal
     fill_in_form(
